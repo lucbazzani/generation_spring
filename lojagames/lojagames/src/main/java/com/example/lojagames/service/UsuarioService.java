@@ -62,7 +62,7 @@ public class UsuarioService {
 		}
 	} 
 	
-	private Optional<UsuarioLogin> loginUsuario(Optional <UsuarioLogin> usuarioLogin){
+	public Optional<UsuarioLogin> loginUsuario(Optional <UsuarioLogin> usuarioLogin){
 		// verifica se o usuário existe | passa-se o '.get()' porque usuarioLogin e usuario são classes diferentes
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		Optional<Usuario> usuario = usuarioRepository.findByUsuario(usuarioLogin.get().getUsuario());
