@@ -15,25 +15,26 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name="tb_categoria")
+@Table(name = "tb_categoria")
 public class Categoria {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	@NotBlank
-	@Size(min = 2, max = 20)
+	@Size(min = 5, max = 20)
 	private String tipo;
 	
 	@NotBlank
-	@Size(min = 2, max = 100)
+	@Size(min = 5, max = 100)
 	private String descricao;
-
+	
 	@OneToMany(mappedBy = "categoria", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("categoria")
-	private List<Produto> produtos;
-	
+	private List<Produto> produto;
+
+
 	public long getId() {
 		return id;
 	}
@@ -57,6 +58,12 @@ public class Categoria {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
-	
+
+	public List<Produto> getProduto() {
+		return produto;
+	}
+
+	public void setProduto(List<Produto> produto) {
+		this.produto = produto;
+	}
 }

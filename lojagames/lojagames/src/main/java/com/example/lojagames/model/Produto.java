@@ -13,25 +13,39 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name="tb_produtos")
+@Table(name = "tb_produto")
 public class Produto {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-
+	
 	@NotBlank
-	@Size(min = 1, max = 100)
+	@Size( min = 5, max = 30)
 	private String nome;
 	
-	@Min(1) // VALOR MINIMO = 1
+	@Min(1)
 	private double preco;
 	
+	
 	private boolean disponivel;
-
-	@ManyToOne 
-	@JsonIgnoreProperties("produtos")
+	
+	@ManyToOne
+	@JsonIgnoreProperties("produto")
 	private Categoria categoria;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("produto")
+	private Categoria usuario;
+	
+	
+	public Categoria getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Categoria usuario) {
+		this.usuario = usuario;
+	}
 
 	public long getId() {
 		return id;
